@@ -59,6 +59,16 @@ public class Users  implements Serializable {
         @ColumnInfo(name = "repos_url")
         String repos_url;
 
+        public String getEvents_url() {
+                return events_url;
+        }
+
+        public void setEvents_url(String events_url) {
+                this.events_url = events_url;
+        }
+
+        @ColumnInfo(name="events_url")
+        String events_url;
 
         @ColumnInfo(name = "received_events_url")
         String received_events_url;

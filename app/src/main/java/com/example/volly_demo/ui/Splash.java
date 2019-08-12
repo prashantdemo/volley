@@ -74,6 +74,7 @@ public class Splash extends AppCompatActivity {
                         users.setReceived_events_url(jsonObject.getString(Config.TAG_Received_events_url));
                         users.setType(jsonObject.getString(Config.TAG_Type));
                         users.setSite_admin(jsonObject.getString(Config.TAG_Site_admin));
+                        users.setEvents_url(jsonObject.getString(Config.TAG_events_url));
 
 
                         myAppDatabase.myDao().addUser(users);
