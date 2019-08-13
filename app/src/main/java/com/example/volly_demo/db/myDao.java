@@ -8,8 +8,6 @@ import com.example.volly_demo.db.Entity.Users;
 import java.util.List;
 
 
-
-
     @Dao
     public interface myDao {
 

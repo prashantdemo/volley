@@ -10,10 +10,30 @@ import java.io.Serializable;
 public class Users  implements Serializable {
 
         @PrimaryKey(autoGenerate = true)
-        int id;
+        int aid;
 
         @ColumnInfo(name = "login")
         String login;
+
+        public int getAid() {
+                return aid;
+        }
+
+        public void setAid(int aid) {
+                this.aid = aid;
+        }
+
+        public String getId() {
+                return id;
+        }
+
+        public void setId(String id) {
+                this.id = id;
+        }
+
+        @ColumnInfo(name = "id")
+        String id;
+
 
         @ColumnInfo(name = "node_id")
         String node_id;
@@ -76,13 +96,7 @@ public class Users  implements Serializable {
         @ColumnInfo(name = "type")
         String type;
 
-        public int getId() {
-                return id;
-        }
 
-        public void setId(int id) {
-                this.id = id;
-        }
 
         public String getLogin() {
                 return login;

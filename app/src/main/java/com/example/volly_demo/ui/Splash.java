@@ -8,9 +8,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.volly_demo.R;
 import com.example.volly_demo.db.Config;
 import com.example.volly_demo.db.Entity.Users;
@@ -58,7 +61,7 @@ public class Splash extends AppCompatActivity {
 
                         //Set fields in Districts object.
                         users.setLogin(jsonObject.getString(Config.TAG_Login));
-                        users.setId(jsonObject.getInt(Config.TAG_Id));
+                        users.setId(jsonObject.getString(Config.TAG_Id));
                         users.setNode_id(jsonObject.getString(Config.TAG_Node));
                         users.setAvatar_url(jsonObject.getString(Config.TAG_Avatar));
                         users.setGravatar_id(jsonObject.getString(Config.TAG_Gravatar_id));
@@ -75,7 +78,6 @@ public class Splash extends AppCompatActivity {
                         users.setType(jsonObject.getString(Config.TAG_Type));
                         users.setSite_admin(jsonObject.getString(Config.TAG_Site_admin));
                         users.setEvents_url(jsonObject.getString(Config.TAG_events_url));
-
 
                         myAppDatabase.myDao().addUser(users);
 
@@ -96,5 +98,12 @@ public class Splash extends AppCompatActivity {
                 Log.e("Volley", error.toString());
             }
         });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(jsonArrayRequest);
     }
 }
