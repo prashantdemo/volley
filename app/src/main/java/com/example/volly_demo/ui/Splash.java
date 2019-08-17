@@ -26,11 +26,12 @@ import org.json.JSONObject;
 public class Splash extends AppCompatActivity {
 
     MyAppDatabase myAppDatabase;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -38,8 +39,8 @@ public class Splash extends AppCompatActivity {
             public void run() {
                 myAppDatabase = Room.databaseBuilder(getApplicationContext(), MyAppDatabase.class, "myDao").allowMainThreadQueries().build();
 
-                //get data from webservice and store locally
 
+                //get data from webservice and store locally
 
                 getData();
             }
@@ -59,7 +60,8 @@ public class Splash extends AppCompatActivity {
 
                         Users users = new Users();
 
-                        //Set fields in Districts object.
+                        //Set fields in Users object.
+
                         users.setLogin(jsonObject.getString(Config.TAG_Login));
                         users.setId(jsonObject.getString(Config.TAG_Id));
                         users.setNode_id(jsonObject.getString(Config.TAG_Node));
@@ -83,9 +85,9 @@ public class Splash extends AppCompatActivity {
 
 
 
-//                        Intent intent = new Intent(Splash.this, Spinner.class);
+                      Intent intent = new Intent(Splash.this, Home.class);
 //                        intent.putExtra("remember", "true");
-//                        startActivity(intent);
+                        startActivity(intent);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -107,3 +109,7 @@ public class Splash extends AppCompatActivity {
         requestQueue.add(jsonArrayRequest);
     }
 }
+
+
+
+
